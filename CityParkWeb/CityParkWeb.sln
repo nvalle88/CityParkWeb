@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CityParkWeb.entidades", "bd.webappth.entidades\CityParkWeb.entidades.csproj", "{B9212D92-B1C7-4C15-AE60-8E3DE5C99BE6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CityParkWeb.servicios", "bd.webappth.servicios\CityParkWeb.servicios.csproj", "{65575963-8E84-493F-B498-09A7FFC00723}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CityParkWeb.web", "bd.webappth.web\CityParkWeb.web.csproj", "{3D7D310A-38AB-4BCA-8069-6E5893E2A8BE}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B9212D92-B1C7-4C15-AE60-8E3DE5C99BE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9212D92-B1C7-4C15-AE60-8E3DE5C99BE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9212D92-B1C7-4C15-AE60-8E3DE5C99BE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9212D92-B1C7-4C15-AE60-8E3DE5C99BE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65575963-8E84-493F-B498-09A7FFC00723}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65575963-8E84-493F-B498-09A7FFC00723}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65575963-8E84-493F-B498-09A7FFC00723}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65575963-8E84-493F-B498-09A7FFC00723}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D7D310A-38AB-4BCA-8069-6E5893E2A8BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D7D310A-38AB-4BCA-8069-6E5893E2A8BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D7D310A-38AB-4BCA-8069-6E5893E2A8BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D7D310A-38AB-4BCA-8069-6E5893E2A8BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
