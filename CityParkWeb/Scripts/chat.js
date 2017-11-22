@@ -2,7 +2,7 @@
     $(function () {
         var chatInput = $("#chat-input");
         var userName;
-        var map = $("#map");
+        var mapa = $("#map");
 
         //ask for a username
         setTimeout(function () {
@@ -18,7 +18,7 @@
             var pos = { lat: livePositionRequest.Lat, lng: livePositionRequest.Lon };
             var marker = new google.maps.Marker({
                 position: pos,
-                map: map
+                map: mapa
             });
             chatWindow.append("<div><strong>" + livePositionRequest.EmpresaId + ": </strong>" + livePositionRequest.Lat + "</div>");
             
