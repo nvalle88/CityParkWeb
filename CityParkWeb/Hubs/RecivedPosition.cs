@@ -11,11 +11,17 @@ using CityParkWeb.ClassUtils;
 
 namespace CityParkWeb.Server.Hubs
 {
-    public class Chat : Hub
+    public class recived : Hub
     {
-        public void SendMessage(LivePositionRequest livePositionRequest)
+        public void SendPosition(LivePositionRequest livePositionRequest)
         {
-           
+            
+
+            if (true)
+            {
+
+            }
+
             Clients.All.MessageReceived(livePositionRequest);
         }
     }

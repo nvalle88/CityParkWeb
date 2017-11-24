@@ -2,8 +2,7 @@
 @{
     ViewBag.Title = "Home";
 }
-<hr />
-
+<br />
 
 <script src="~/Scripts/jquery-1.9.1.min.js"></script>
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
@@ -12,32 +11,16 @@
 <script src="~/signalr/hubs"></script>
 <script src="~/Scripts/chat.js"></script>
 <style>
-
-        /* Always set the map height explicitly to define the size of the div
-           * element that contains the map. */
               #map {
                     height: 500px;
-                    width:1100px;
-
-        }
-
-
-        /* Optional: Makes the sample page fill the window. */
-              
-    /* END E
+                    width:1200px;
+                   }
 </style>
-<div class="row">
-        <div class="col-sm-12">
-            <input type="text" id="chat-input" placeholder="To chat, type here and press Enter!" class="form-control" />
-            <hr/>
-            <div id="chat-window">
-                
-            </div>
-        </div>
-    </div>
-<div class="row">
 
-    <div id="map"></div>
+<div class="row col-lg-12">
+
+    <legend>Posición de los agentes en tiempo real</legend>
+    <div id="map" class="col-lg-12"></div>
     <script>
         var map;
 
@@ -46,9 +29,12 @@
                 center: { lat: -0.225219, lng: -78.5248 },
                 zoom: 15
             });
-            var infoWindow = new google.maps.InfoWindow({ map: map });
-
             // Try HTML5 geolocation.
+            geoLocation(map);
+        }
+
+        function geoLocation(map) {
+            var infoWindow = new google.maps.InfoWindow({ map: map });
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     var pos = {
@@ -67,7 +53,6 @@
                 handleLocationError(false, infoWindow, map.getCenter());
             }
         }
-
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
             infoWindow.setPosition(pos);
             infoWindow.setContent(browserHasGeolocation ?
@@ -76,7 +61,8 @@
         }
         
     </script>
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy7xHSOffrWxVEax1kniS5-OxrWCuF4JU&callback=initMap"
               async defer></script>
-
+    
 </div>
