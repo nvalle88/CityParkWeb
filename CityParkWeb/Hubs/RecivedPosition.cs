@@ -15,12 +15,8 @@ namespace CityParkWeb.Server.Hubs
     {
         public void SendPosition(LivePositionRequest livePositionRequest)
         {
-            
 
-            if (true)
-            {
-
-            }
+            livePositionRequest.fecha = DateTime.Now.ToLocalTime();
 
             Clients.All.MessageReceived(livePositionRequest);
         }

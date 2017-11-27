@@ -1,29 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿#region Using
+
 using System.Web.Mvc;
+
+#endregion
 
 namespace CityParkWeb.Controllers
 {
+   [Authorize]
     public class HomeController : Controller
     {
+        // GET: home/index
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Social()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        // GET: home/inbox
+        public ActionResult Inbox()
         {
-            ViewBag.Message = "Your contact page.";
+            return View();
+        }
 
+        // GET: home/widgets
+        public ActionResult Widgets()
+        {
+            return View();
+        }
+
+        // GET: home/chat
+        public ActionResult Chat()
+        {
             return View();
         }
     }

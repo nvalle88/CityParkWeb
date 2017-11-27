@@ -1,0 +1,50 @@
+﻿    <!-- Left panel : Navigation area -->
+<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+<aside id="left-panel">
+
+    <!-- User info -->
+    @{ Html.RenderPartial("_CurrentUser"); }
+    <!-- end user info -->
+    <!-- NAVIGATION : This navigation is also responsive
+
+    To make this navigation dynamic please make sure to link the node
+    (the reference to the nav > ul) after page load. Or the navigation
+    will not initialize.
+    -->
+    <nav>
+        <!-- NOTE: Notice the gaps after each icon usage <i></i>..
+        Please note that these links work a bit different than
+        traditional href="" links. See documentation for details.
+        -->
+
+        <ul>
+            <li class="@Html.RouteIf("Home", "active")">
+                <a href="@Url.Action("Index", "home")" title="Inicio"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Inicio</span></a>
+            </li>
+            <li  @Html.RouteIf("Agentes", "active" )">
+                <a href="#"><i class="fa fa-lg fa-fw fa-cab txt-color-blue"></i> <span class="menu-item-parent">Agentes</span></a>
+                <ul>
+                    <li class="@Html.RouteIf("VerAgentesTiempoReal", "active")">
+                        <a href="@Url.Action("VerAgentesTiempoReal", "Agentes")" title="Ver posición de los agentes en tiempo real"><i class="fa fa-lg fa-fw  fa-map-marker txt-color-blue"></i> <span class="menu-item-parent">Posición</span></a>
+                    </li>
+                    <li class="@Html.RouteIf("Agentes", "active")">
+                        <a href="@Url.Action("Index", "Agentes")" title="Gestión de agentes [Insertar/Actualizar/Eliminar]"><i class="fa fa-lg fa-fw fa-child txt-color-blue "></i> <span class="menu-item-parent">Gestionar agentes</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class="@Html.RouteIf("Vendedores", "active")">
+                <a href="#"><i class="fa fa-lg fa-fw  fa-user "></i> <span class="menu-item-parent">Vendedores</span></a>
+                <ul>
+                    <li class="@Html.RouteIf("Vendedores", "active")">
+                        <a href="@Url.Action("Index", "Vendedores")" title="Gestión de vendedores [Insertar/Actualizar/Eliminar]"><i class="fa fa-lg fa-fw fa-group"></i> Gestionar vendedores</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <span class="minifyme" data-action="minifyMenu">
+        <i class="fa fa-arrow-circle-left hit"></i>
+    </span>
+
+</aside>
+<!-- END NAVIGATION -->

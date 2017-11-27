@@ -1,5 +1,7 @@
 ﻿(function ($) {
     $(function () {
+       
+
         var chatInput = $("#chat-input");
         var userName;
         var map;
@@ -20,6 +22,10 @@
         //this is the function that's run when the "messageReceived" function is called from the server
         chat.client.messageReceived = function (livePositionRequest) {
 
+
+            var localTime = moment.utc().toDate();
+            localTime = moment(localTime).format('DD-MM-YYYY hh:mm:ss A');
+
             var contentString = '<div id="content">' +
                 '<div id="siteNotice">' +
                 '</div>' +
@@ -28,7 +34,7 @@
                 '<p><b>Nombre del Agente:</b>' + livePositionRequest.Nombre + '.</p>' +
                 '<p><b>Latitud:</b>' + livePositionRequest.Lat + '.</p>' +
                 '<p><b>Longitud:</b>' + livePositionRequest.Lon + '.</p>' +
-                '<p><b>Fecha:</b>' + livePositionRequest.fecha + '.</p>' +
+                '<p><b>Fecha:</b>' + localTime + '.</p>' +
                 '</div>' +
                 '</div>';
 
