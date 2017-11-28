@@ -1,13 +1,13 @@
-﻿@model List<CityParkWeb.Entities.Negocio.Agente>
+﻿@model List<CityParkWeb.Entities.Negocio.Sector>
 
 @{
     ViewData["Title"] = "Index";
 }
 <div id="content">
     <p></p>
-     @Html.ActionLink("Nuevo agente", "Create", "", new { @class = "btn btn-default" })
-     
-   
+    @Html.ActionLink("Nuevo sector", "Create", "", new { @class = "btn btn-default" })
+
+
     <p> </p>
     <section id="widget-grid" class="">
         <div class="row">
@@ -15,7 +15,7 @@
                 <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
                     <header>
                         <span class="widget-icon"> <i class="fa fa-table"></i> </span>
-                        <h2>Agentes</h2>
+                        <h2>Sectores</h2>
                     </header>
                     <div>
                         <div class="jarviswidget-editbox">
@@ -26,15 +26,7 @@
                                     <tr>
                                         <th data-class="expand">
                                             <i class="icon-append fa fa-user"></i>
-                                            @Html.DisplayNameFor(model => model.FirstOrDefault().Nombre)
-                                        </th>
-                                        <th data-class="expand">
-                                            <i class="icon-append fa fa-user"></i>
-                                            @Html.DisplayNameFor(model => model.FirstOrDefault().Apellido)
-                                        </th>
-                                        <th data-class="expand">
-                                            <i class="icon-append fa fa-home"></i>
-                                            @Html.DisplayNameFor(model => model.FirstOrDefault().Sector.SectorId)
+                                            @Html.DisplayNameFor(model => model.FirstOrDefault().NombreSector)
                                         </th>
                                         <th data-class="expand">
                                             <i class="icon-append fa fa-home"></i>
@@ -55,13 +47,7 @@
                                     {
                                         <tr>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Nombre)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Apellido)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Sector.NombreSector)
+                                                @Html.DisplayFor(modelItem => item.NombreSector)
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Empresa.RazonSocial)
@@ -70,9 +56,9 @@
                                                 @Html.DisplayFor(modelItem => item.Empresa.Direccion)
                                             </td>
                                             <td>
-                                                @Html.ActionLink("Resetear contraseña", "ResetPassword", new { id = item.AgenteId }, new { onclick = "return confirm('Desea resetear la contraseña... ?');" }) |
-                                                @Html.ActionLink("Editar", "Edit", new { id = item.AgenteId }) |
-                                                @Html.ActionLink("Eliminar", "Delete", new { id = item.AgenteId }, new { onclick = "return confirm('Desea eliminar el agente de forma permanente... ?');" })
+                                                @Html.ActionLink("Detalle", "Details", new { id = item.SectorId }) |
+                                                @Html.ActionLink("Editar", "Edit", new { id = item.SectorId }) |
+                                                @Html.ActionLink("Eliminar", "Delete", new { id = item.SectorId }, new { onclick = "return confirm('Desea eliminar el sector de forma permanente... ?');" })
                                             </td>
                                         </tr>
                                     }
@@ -89,5 +75,3 @@
     <script src="~/Scripts/DataTables/DataTableInit.js" type="text/javascript">
     </script>
 }
-
-

@@ -1,0 +1,168 @@
+﻿@model CityParkWeb.Entities.Negocio.Sector
+@{
+    ViewBag.Title = "Home";
+}
+
+<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+<script src="~/Scripts/jquery-3.2.1.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<style>
+    #map_container {
+        position: relative;
+    }
+
+    #map {
+        height: 0;
+        overflow: hidden;
+        padding-bottom: 30.25%;
+        padding-top: 10px;
+        position: relative;
+    }
+</style>
+<div id="content">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="well">
+                <legend>Sectores</legend>
+                <section id="widget-grid" class="">
+                    <div class="row">
+                        <article class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-close="false" data-widget-custombutton="false">
+                                <header draggable="true">
+                                    <span class="widget-icon"> <i class="fa fa-map-marker"></i> </span>
+                                    <h2>Seleccione el sector con click sobre el mapa</h2>
+                                </header>
+                                <div>
+                                    <div class="jarviswidget-editbox">
+                                    </div>
+                                    <div class="widget-body no-padding">
+                                        <fieldset>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div id="map_container"></div>
+                                                    <div id="map"></div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+                <section id="widget-grid1" class="">
+                    <div class="row">
+                        <article class="col-sm-12 col-md-12 col-lg-12">
+                            <form id="checkout-form" method="post" class="smart-form" novalidate="novalidate">
+                                <div class="row">
+                                    <section class="col col-lg-12">
+                                        <label>Nombre del sector</label>
+                                        <label class="input">
+                                            <i class="icon-prepend fa fa-map-marker"></i>
+                                            @Html.EditorFor(model => model.NombreSector, new { htmlAttributes = new { @class = "form-control", id = "nombre" } })
+                                            @Html.ValidationMessageFor(model => model.NombreSector, "", new { @class = "text-danger" })
+                                        </label>
+                                    </section>
+                                </div>
+                            </form>
+                        </article>
+                    </div>
+                </section>
+                <footer>
+                    <button type="submit" id="insertarsector" class="btn btn-primary">
+                        insertarsector
+                    </button>
+                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default" })
+                </footer>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section pagespecific {
+
+
+    <script type="text/javascript">
+        var path
+
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 14,
+                center: { lat: -0.1702077, lng: -78.4808664 }
+            });
+            var poly = new google.maps.Polyline({
+                strokeColor: '#000000',
+                strokeOpacity: 1,
+                strokeWeight: 3,
+                map: map
+            });
+
+            // Add a listener for the click event
+            google.maps.event.addListener(map, 'click', function (event) {
+                addLatLngToPoly(event.latLng, poly);
+            });
+        }
+
+        /**
+         * Handles click events on a map, and adds a new point to the Polyline.
+         * Updates the encoding text area with the path's encoded values.
+         */
+        var arr = [];
+        var objeto = {}
+        function addLatLngToPoly(latLng, poly) {
+            path = poly.getPath();
+            var a = latLng.lat();
+            var b = latLng.lng();
+            objeto = { latitud: a, longitud: b };
+            arr.push(objeto);
+            // Because path is an MVCArray, we can simply append a new coordinate
+            // and it will automatically appear
+            path.push(latLng);
+            // Update the text field to display the polyline encodings
+
+        }
+
+
+
+    </script>
+
+    <script type="text/javascript">
+        var nombre;
+        var cordenadas;
+        $(document).ready(function () {
+
+            $("#insertarsector").click(function () {
+                var a = $("#nombre").val();
+                if ($("#nombre").val() != "") {
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("InsertarSector")',
+                dataType: 'json',
+                data: { nombreSector: $("#nombre").val(), arreglo: arr, },
+                    success: function (data) {
+                        if (data == true) {
+                               location.href='@Url.Action("Index","Sectores")';
+                        }
+                    }, complete: function (data) {
+                    },
+
+                    error: function (ex) {
+                        alert('Failed to retrieve data.' + ex);
+                    }
+                });
+                }
+                else {
+                    alert("Tiene que introducir el nombre del sector")
+                    return false;
+                }
+            })
+        })
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy7xHSOffrWxVEax1kniS5-OxrWCuF4JU&libraries=drawing&callback=initMap"
+              async defer></script>
+
+}

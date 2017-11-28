@@ -222,6 +222,7 @@
     <Compile Include="Controllers\IntelController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MiscController.cs" />
+    <Compile Include="Controllers\SectoresController.cs" />
     <Compile Include="Controllers\TablesController.cs" />
     <Compile Include="Controllers\VendedoresController.cs" />
     <Compile Include="Global.asax.cs">
@@ -658,6 +659,8 @@
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -1236,6 +1239,9 @@
     <Content Include="Views\Vendedores\Create.cshtml" />
     <Content Include="Views\Vendedores\Edit.cshtml" />
     <Content Include="Views\Vendedores\Index.cshtml" />
+    <Content Include="Views\Sectores.cshtml" />
+    <Content Include="Views\Sectores\Index.cshtml" />
+    <Content Include="Views\Sectores\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

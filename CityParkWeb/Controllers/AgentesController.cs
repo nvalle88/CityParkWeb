@@ -21,21 +21,42 @@ namespace CityParkWeb.Controllers
             return View();
         }
 
+        private async Task<List<Sector>> obtenerSectoresPorEmpresa()
+        {
+            IdentityPersonalizado ci = (IdentityPersonalizado)HttpContext.User.Identity;
+            string nombreUsuario = ci.Identity.Name;
+            var administrador = new Administrador { Nombre = nombreUsuario };
+            administrador = await ProveedorAutenticacion.GetUser(administrador);
+
+            var empresa = new Empresa { EmpresaId = administrador.EmpresaId };
+
+            var listaSectores = await ApiServicio.Listar<Sector>(empresa,
+                                                             new Uri(WebApp.BaseAddress),
+                                                             "api/Sectors/GetSectoresPorEmpresa");
+            return listaSectores;
+        }
+
 
         public async Task<ActionResult> Edit(int id)
         {
-            var agente = new Agente { AgenteId = id };
+
+            if (id<=0)
+            {
+              return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+           var agente = new Agente { AgenteId = id };
 
            var agenteRequest = await ApiServicio.ObtenerElementoAsync1<Response>(agente,
                                                              new Uri(WebApp.BaseAddress),
                                                              "api/Agentes/GetAgente");
-
             if (!agenteRequest.IsSuccess)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var result = JsonConvert.DeserializeObject<Agente>(agenteRequest.Result.ToString());
+            ViewBag.SectorId = new SelectList(await obtenerSectoresPorEmpresa(), "SectorId", "NombreSector", result.SectorId);
+
             return View(result);
         }
 
@@ -45,8 +66,10 @@ namespace CityParkWeb.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.SectorId = new SelectList(await obtenerSectoresPorEmpresa(), "SectorId", "NombreSector", agente.SectorId);
                 return View(agente);
             }
+            
             var agenteRequest = await ApiServicio.EditarAsync<Response>(agente,
                                                               new Uri(WebApp.BaseAddress),
                                                               "api/Agentes/EditAgente");
@@ -91,9 +114,8 @@ namespace CityParkWeb.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<ActionResult> Index()
+        private async Task<List<Agente>> ObtenerAgentesPorEmpresa()
         {
-
             IdentityPersonalizado ci = (IdentityPersonalizado)HttpContext.User.Identity;
             string nombreUsuario = ci.Identity.Name;
             var administrador = new Administrador { Nombre = nombreUsuario };
@@ -101,37 +123,37 @@ namespace CityParkWeb.Controllers
 
             var empresa = new Empresa { EmpresaId = administrador.EmpresaId };
 
-            var response = await ApiServicio.Listar<Agente>(empresa,
+            var listaAgentes = await ApiServicio.Listar<Agente>(empresa,
                                                              new Uri(WebApp.BaseAddress),
                                                              "api/Agentes/GetAgentesPorEmpresa");
+            return listaAgentes;
+        }
 
-            if (response==null)
+        public async Task<ActionResult> Index()
+        {
+            var listaAgentes = await ObtenerAgentesPorEmpresa();
+            if (listaAgentes == null)
             {
                 return View(new List<Agente>());
             }
-            return View(response);
+            return View(listaAgentes);
         }
 
 
       
         public async Task<ActionResult> Create()
         {
-            IdentityPersonalizado ci = (IdentityPersonalizado)HttpContext.User.Identity;
-            string nombreUsuario = ci.Identity.Name;
-            var administrador = new Administrador { Nombre = nombreUsuario };
-            administrador = await ProveedorAutenticacion.GetUser(administrador);
-
-            var agente = new Agente { EmpresaId = administrador.EmpresaId };
-
+            ViewBag.SectorId = new SelectList(await obtenerSectoresPorEmpresa(), "SectorId", "NombreSector");
             return View();
         }
 
         [HttpPost]
         public async Task<ActionResult> Create(Agente agente)
         {
-            if (string.IsNullOrEmpty(agente.Nombre) || string.IsNullOrEmpty(agente.Apellido))
+            if (!ModelState.IsValid)
             {
-                return View();
+                ViewBag.SectorId = new SelectList(await obtenerSectoresPorEmpresa(), "SectorId", "NombreSector", agente.SectorId);
+                return View(agente);
             }
             IdentityPersonalizado ci = (IdentityPersonalizado)HttpContext.User.Identity;
             string nombreUsuario = ci.Identity.Name;

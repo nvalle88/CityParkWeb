@@ -16,7 +16,7 @@ namespace bd.log.servicios.Servicios
             {
                
                 // WebApp.BaseAddress = "http://cityparkws.azurewebsites.net";
-                WebApp.BaseAddress = "http://cityparkws.azurewebsites.net";
+                WebApp.BaseAddress = "http://localhost:59363";
 
 
             }

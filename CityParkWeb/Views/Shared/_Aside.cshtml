@@ -40,6 +40,16 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="@Html.RouteIf("Sectores", "active")">
+                <a href="#"><i class="fa fa-lg fa-fw  fa-circle-o-notch "></i> <span class="menu-item-parent">Sectores</span></a>
+                <ul>
+                    <li class="@Html.RouteIf("Index", "active")">
+                        <a href="@Url.Action("Index", "Sectores")" title="Gestión de sectores [Insertar/Actualizar/Eliminar]"><i class="fa fa-lg fa-fw fa-circle-thin"></i> Gestionar sectores</a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
     </nav>
     <span class="minifyme" data-action="minifyMenu">

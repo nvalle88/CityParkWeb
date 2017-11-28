@@ -31,5 +31,7 @@ namespace CityParkWeb.Entities.Negocio
         public virtual ICollection<Agente> Agente { get; set; }
 
         public virtual ICollection<Vendedor> Vendedor { get; set; }
+
+        public virtual ICollection<Sector> Sector { get; set; }
     }
 }
