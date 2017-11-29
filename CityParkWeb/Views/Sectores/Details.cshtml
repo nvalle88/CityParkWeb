@@ -26,6 +26,7 @@
     }
 </style>
 <div id="content">
+    @Html.HiddenFor(model => model.SectorId)
     <div class="row">
         <div class="col-sm-12">
             <div class="well">
@@ -89,83 +90,73 @@
 
 @section pagespecific {
 
+<script type="text/javascript">
+
+    
+</script>
+
 
     <script type="text/javascript">
-        var path
 
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 14,
-                center: { lat: -0.1702077, lng: -78.4808664 }
-            });
-            var poly = new google.maps.Polyline({
-                strokeColor: '#000000',
-                strokeOpacity: 1,
-                strokeWeight: 3,
-                map: map
-            });
-
-            // Add a listener for the click event
-            google.maps.event.addListener(map, 'click', function (event) {
-                addLatLngToPoly(event.latLng, poly);
-            });
-        }
-
-        /**
-         * Handles click events on a map, and adds a new point to the Polyline.
-         * Updates the encoding text area with the path's encoded values.
-         */
-        var arr = [];
-        var objeto = {}
-        function addLatLngToPoly(latLng, poly) {
-            path = poly.getPath();
-            var a = latLng.lat();
-            var b = latLng.lng();
-            objeto = { latitud: a, longitud: b };
-            arr.push(objeto);
-            // Because path is an MVCArray, we can simply append a new coordinate
-            // and it will automatically appear
-            path.push(latLng);
-            // Update the text field to display the polyline encodings
-
-        }
-
-
-
-    </script>
-
-    <script type="text/javascript">
-        var nombre;
-        var cordenadas;
+        var arreglo = [];
         $(document).ready(function () {
-
-            $("#insertarsector").click(function () {
-                var a = $("#nombre").val();
-                if ($("#nombre").val() != "") {
-                    $.ajax({
-                        type: 'POST',
-                        url: '@Url.Action("InsertarSector")',
-                dataType: 'json',
-                data: { nombreSector: $("#nombre").val(), arreglo: arr, },
+            
+            if ($("#nombre").val() != "") {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("DetalleSector")',
+                    dataType: 'json',
+                    data: { sectorId: $("#SectorId").val() },
                     success: function (data) {
-                        if (data == true) {
-                               location.href='@Url.Action("Index","Sectores")';
-                        }
+                        arreglo = data;
+
                     }, complete: function (data) {
+                        var path;
+                        
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                                zoom: 12,
+                                center: { lat: -0.1702077, lng: -78.4808664 },
+                                mapTypeId: 'terrain'
+                            });
+                            var Cord = [];
+                            for (var i = 0; i < arreglo.length; i++) {
+                                var a = arreglo[i].lat;
+                                var b = arreglo[i].lng;
+                                var Cordenadas = { lat: a, lng: b };
+                                Cord.push(Cordenadas);
+                            }
+                            
+
+                            var bermudaTriangle = new google.maps.Polygon({
+                                paths: Cord,
+                                strokeColor: '#FF0000',
+                                strokeOpacity: 0.8,
+                                strokeWeight: 3,
+                                fillColor: '#FF0000',
+                                fillOpacity: 0.35
+                            });
+                            bermudaTriangle.setMap(map);
+                        
                     },
 
                     error: function (ex) {
                         alert('Failed to retrieve data.' + ex);
                     }
                 });
-                }
-                else {
-                    alert("Tiene que introducir el nombre del sector")
-                    return false;
-                }
-            })
-        })
+            }
+            else {
+                alert("Tiene que introducir el nombre del sector")
+                return false;
+            }
+
+        });
+
+
+      
+
     </script>
+
+   
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy7xHSOffrWxVEax1kniS5-OxrWCuF4JU&libraries=drawing&callback=initMap"
               async defer></script>

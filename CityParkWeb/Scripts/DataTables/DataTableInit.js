@@ -139,7 +139,6 @@
         },
         "autoWidth": true,
         "preDrawCallback": function () {
-            // Initialize the responsive datatables helper once.
             if (!responsiveHelper_datatable_tabletools) {
                 responsiveHelper_datatable_tabletools = new ResponsiveDatatablesHelper($('#datatable_tabletools'), breakpointDefinition);
             }
@@ -151,7 +150,4 @@
             responsiveHelper_datatable_tabletools.respond();
         }
     });
-
-    /* END TABLETOOLS */
-
-})
+});

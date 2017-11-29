@@ -1,4 +1,5 @@
 ﻿using CityParkWeb.Entities.Helpers;
+using CityParkWeb.Entities.ModeloTranferencia;
 using CityParkWeb.Entities.Negocio;
 using CityParkWeb.Entities.Utils;
 using CityParkWeb.Seguridad;
@@ -114,7 +115,7 @@ namespace CityParkWeb.Controllers
             return RedirectToAction("Index");
         }
 
-        private async Task<List<Agente>> ObtenerAgentesPorEmpresa()
+        private async Task<List<AgenteRequest>> ObtenerAgentesPorEmpresa()
         {
             IdentityPersonalizado ci = (IdentityPersonalizado)HttpContext.User.Identity;
             string nombreUsuario = ci.Identity.Name;
@@ -123,7 +124,7 @@ namespace CityParkWeb.Controllers
 
             var empresa = new Empresa { EmpresaId = administrador.EmpresaId };
 
-            var listaAgentes = await ApiServicio.Listar<Agente>(empresa,
+            var listaAgentes = await ApiServicio.Listar<AgenteRequest>(empresa,
                                                              new Uri(WebApp.BaseAddress),
                                                              "api/Agentes/GetAgentesPorEmpresa");
             return listaAgentes;
@@ -134,7 +135,7 @@ namespace CityParkWeb.Controllers
             var listaAgentes = await ObtenerAgentesPorEmpresa();
             if (listaAgentes == null)
             {
-                return View(new List<Agente>());
+                return View(new List<AgenteRequest>());
             }
             return View(listaAgentes);
         }

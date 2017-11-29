@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Constantes\Class1.cs" />
     <Compile Include="Enumeradores\Enumeradores.cs" />
+    <Compile Include="ModeloTranferencia\AgenteRequest.cs" />
     <Compile Include="ModeloTranferencia\LoginRequest.cs" />
     <Compile Include="ModeloTranferencia\SectorViewModel.cs" />
     <Compile Include="Negocio\Administrador.cs" />

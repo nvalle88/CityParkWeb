@@ -26,6 +26,7 @@
     }
 </style>
 <div id="content">
+    @Html.HiddenFor(model => model.SectorId)
     <div class="row">
         <div class="col-sm-12">
             <div class="well">
@@ -88,11 +89,8 @@
 
 
 @section pagespecific {
-
-
     <script type="text/javascript">
         var path
-
         function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 14,
@@ -129,24 +127,17 @@
             // Update the text field to display the polyline encodings
 
         }
-
-
-
     </script>
 
     <script type="text/javascript">
-        var nombre;
-        var cordenadas;
         $(document).ready(function () {
-
             $("#insertarsector").click(function () {
-                var a = $("#nombre").val();
                 if ($("#nombre").val() != "") {
                     $.ajax({
                         type: 'POST',
-                        url: '@Url.Action("InsertarSector")',
+                        url: '@Url.Action("EditarSector")',
                 dataType: 'json',
-                data: { nombreSector: $("#nombre").val(), arreglo: arr, },
+                data: { sectorId: $("#SectorId").val(), nombreSector: $("#nombre").val(), arreglo: arr, },
                     success: function (data) {
                         if (data == true) {
                                location.href='@Url.Action("Index","Sectores")';
