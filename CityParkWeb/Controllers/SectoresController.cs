@@ -118,8 +118,8 @@ namespace CityParkWeb.Controllers
 
         public class PuntosRequest
         {
-            public string lat { get; set; }
-            public string lng { get; set; }
+            public double lat { get; set; }
+            public double lng { get; set; }
         }
 
         public async Task<JsonResult> DetalleSector(int sectorId)
@@ -142,7 +142,7 @@ namespace CityParkWeb.Controllers
 
             foreach (var item in response)
             {
-                listaRequest.Add(new PuntosRequest {lat=Convert.ToString(item.Latitud),lng=Convert.ToString(item.Longitud) });
+                listaRequest.Add(new PuntosRequest {lat=(Double)item.Latitud ,lng=(Double) item.Longitud});
             }
 
             return Json(listaRequest);
@@ -163,8 +163,8 @@ namespace CityParkWeb.Controllers
 
             foreach (var item in arreglo)
             {
-                item.latitud = item.latitud.Replace(".", ",");
-                item.longitud = item.longitud.Replace(".", ",");
+               // item.latitud = item.latitud.Replace(".", ",");
+                //item.longitud = item.longitud.Replace(".", ",");
                 lista.Add(new PuntoSector { Latitud = Convert.ToDouble(item.latitud), Longitud = Convert.ToDouble(item.longitud) });
 
             }

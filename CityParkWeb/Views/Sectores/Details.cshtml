@@ -30,14 +30,14 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="well">
-                <legend>Sectores</legend>
+                <legend>Sector: @Model.NombreSector</legend>
                 <section id="widget-grid" class="">
                     <div class="row">
                         <article class="col-sm-12 col-md-12 col-lg-12">
                             <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-close="false" data-widget-custombutton="false">
                                 <header draggable="true">
                                     <span class="widget-icon"> <i class="fa fa-map-marker"></i> </span>
-                                    <h2>Seleccione el sector con click sobre el mapa</h2>
+                                    <h2>Detalle del sector seleccionado</h2>
                                 </header>
                                 <div>
                                     <div class="jarviswidget-editbox">
@@ -57,28 +57,7 @@
                         </article>
                     </div>
                 </section>
-                <section id="widget-grid1" class="">
-                    <div class="row">
-                        <article class="col-sm-12 col-md-12 col-lg-12">
-                            <form id="checkout-form" method="post" class="smart-form" novalidate="novalidate">
-                                <div class="row">
-                                    <section class="col col-lg-12">
-                                        <label>Nombre del sector</label>
-                                        <label class="input">
-                                            <i class="icon-prepend fa fa-map-marker"></i>
-                                            @Html.EditorFor(model => model.NombreSector, new { htmlAttributes = new { @class = "form-control", id = "nombre" } })
-                                            @Html.ValidationMessageFor(model => model.NombreSector, "", new { @class = "text-danger" })
-                                        </label>
-                                    </section>
-                                </div>
-                            </form>
-                        </article>
-                    </div>
-                </section>
                 <footer>
-                    <button type="submit" id="insertarsector" class="btn btn-primary">
-                        insertarsector
-                    </button>
                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default" })
                 </footer>
             </div>
@@ -112,30 +91,31 @@
 
                     }, complete: function (data) {
                         var path;
-                        
+
+                        var Cord = [];
+                        for (var i = 0; i < arreglo.length; i++) {
+                            var a = arreglo[i].lat;
+                            var b = arreglo[i].lng;
+                            var Cordenadas = { lat: a, lng: b };
+                            Cord.push(Cordenadas);
+                        }
                             var map = new google.maps.Map(document.getElementById('map'), {
-                                zoom: 12,
-                                center: { lat: -0.1702077, lng: -78.4808664 },
-                                mapTypeId: 'terrain'
+                                zoom: 15,
+                                center: { lat: Cord[0].lat, lng: Cord[0].lng }
+                               
                             });
-                            var Cord = [];
-                            for (var i = 0; i < arreglo.length; i++) {
-                                var a = arreglo[i].lat;
-                                var b = arreglo[i].lng;
-                                var Cordenadas = { lat: a, lng: b };
-                                Cord.push(Cordenadas);
-                            }
+                            
                             
 
-                            var bermudaTriangle = new google.maps.Polygon({
+                            var sectorLocalizacion = new google.maps.Polygon({
                                 paths: Cord,
-                                strokeColor: '#FF0000',
+                                strokeColor: '#0000FF',
                                 strokeOpacity: 0.8,
-                                strokeWeight: 3,
-                                fillColor: '#FF0000',
+                                strokeWeight: 4,
+                                fillColor: '#0000FF',
                                 fillOpacity: 0.35
                             });
-                            bermudaTriangle.setMap(map);
+                            sectorLocalizacion.setMap(map);
                         
                     },
 

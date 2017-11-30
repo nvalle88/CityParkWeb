@@ -77,7 +77,7 @@
                 </section>
                 <footer>
                     <button type="submit" id="insertarsector" class="btn btn-primary">
-                        insertarsector
+                        Editar sector
                     </button>
                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default" })
                 </footer>
@@ -91,11 +91,50 @@
 @section pagespecific {
     <script type="text/javascript">
         var path
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
+        var Cord = [];
+        var arreglo = [];
+        var map;
+        $(document).ready(function () {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("DetalleSector")',
+                dataType: 'json',
+                data: { sectorId: $("#SectorId").val() },
+                success: function (data) {
+                    arreglo = data;
+                    for (var i = 0; i < arreglo.length; i++) {
+                        var a = arreglo[i].lat;
+                        var b = arreglo[i].lng;
+                        var Cordenadas = { lat: a, lng: b };
+                        Cord.push(Cordenadas);
+                    }
+
+                    var sectorLocalizacion = new google.maps.Polygon({
+                        paths: Cord,
+                        strokeColor: '#0000FF',
+                        strokeOpacity: 0.8,
+                        strokeWeight: 4,
+                        fillColor: '#0000FF',
+                        fillOpacity: 0.35
+                    });
+                    sectorLocalizacion.setMap(map);
+
+                }, complete: function (data) {
+                    var path;
+                },
+
+                error: function (ex) {
+                    alert('Failed to retrieve data.' + ex);
+                }
+            });
+
+
+
+             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 14,
                 center: { lat: -0.1702077, lng: -78.4808664 }
             });
+
             var poly = new google.maps.Polyline({
                 strokeColor: '#000000',
                 strokeOpacity: 1,
@@ -107,12 +146,13 @@
             google.maps.event.addListener(map, 'click', function (event) {
                 addLatLngToPoly(event.latLng, poly);
             });
-        }
+
 
         /**
          * Handles click events on a map, and adds a new point to the Polyline.
          * Updates the encoding text area with the path's encoded values.
          */
+
         var arr = [];
         var objeto = {}
         function addLatLngToPoly(latLng, poly) {
@@ -127,35 +167,36 @@
             // Update the text field to display the polyline encodings
 
         }
-    </script>
 
-    <script type="text/javascript">
         $(document).ready(function () {
             $("#insertarsector").click(function () {
                 if ($("#nombre").val() != "") {
                     $.ajax({
                         type: 'POST',
                         url: '@Url.Action("EditarSector")',
-                dataType: 'json',
-                data: { sectorId: $("#SectorId").val(), nombreSector: $("#nombre").val(), arreglo: arr, },
-                    success: function (data) {
-                        if (data == true) {
-                               location.href='@Url.Action("Index","Sectores")';
-                        }
-                    }, complete: function (data) {
-                    },
+                        dataType: 'json',
+                        data: { sectorId: $("#SectorId").val(), nombreSector: $("#nombre").val(), arreglo: arr, },
+                        success: function (data) {
+                            if (data == true) {
+                                location.href = '@Url.Action("Index","Sectores")';
+                            }
+                        }, complete: function (data) {
+                        },
 
-                    error: function (ex) {
-                        alert('Failed to retrieve data.' + ex);
-                    }
-                });
+                        error: function (ex) {
+                            alert('Failed to retrieve data.' + ex);
+                        }
+                    });
                 }
                 else {
                     alert("Tiene que introducir el nombre del sector")
                     return false;
                 }
             })
-        })
+        });
+
+
+        });
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy7xHSOffrWxVEax1kniS5-OxrWCuF4JU&libraries=drawing&callback=initMap"
