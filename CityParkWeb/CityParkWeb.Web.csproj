@@ -222,6 +222,7 @@
     <Compile Include="Controllers\IntelController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MiscController.cs" />
+    <Compile Include="Controllers\SalariosController.cs" />
     <Compile Include="Controllers\SectoresController.cs" />
     <Compile Include="Controllers\TablesController.cs" />
     <Compile Include="Controllers\VendedoresController.cs" />
@@ -675,6 +676,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\libs\jquery-2.1.1.min.js" />
     <Content Include="Scripts\libs\jquery-ui-1.10.3.min.js" />
+    <Content Include="Scripts\libs\waitMe\img.svg" />
+    <Content Include="Scripts\libs\waitMe\index.html" />
+    <Content Include="Scripts\libs\waitMe\waitMe.css" />
+    <Content Include="Scripts\libs\waitMe\waitMe.js" />
+    <Content Include="Scripts\libs\waitMe\waitMe.min.css" />
+    <Content Include="Scripts\libs\waitMe\waitMe.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment.js" />
@@ -1115,6 +1122,7 @@
     <Content Include="Scripts\plugin\x-editable\x-editable.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Site.js" />
     <Content Include="Scripts\smart-chat-ui\smart.chat.manager.min.js" />
     <Content Include="Scripts\smart-chat-ui\smart.chat.ui.min.js" />
     <Content Include="Scripts\smartwidgets\jarvis.widget.min.js" />
@@ -1250,12 +1258,16 @@
     <Content Include="Views\Sectores\Create.cshtml" />
     <Content Include="Views\Sectores\Edit.cshtml" />
     <Content Include="Views\Sectores\Details.cshtml" />
+    <Content Include="Views\Salarios\Index.cshtml" />
+    <Content Include="Scripts\libs\waitMe\LICENSE.md" />
+    <Content Include="Scripts\libs\waitMe\README.md" />
+    <Content Include="Views\Salarios\Create.cshtml" />
+    <Content Include="Views\Salarios\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\img\realestate\thumbs\" />
     <Folder Include="Helpers\" />
-    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

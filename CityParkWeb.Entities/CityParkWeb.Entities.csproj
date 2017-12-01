@@ -68,8 +68,11 @@
     <Compile Include="Negocio\Administrador.cs" />
     <Compile Include="Negocio\Agente.cs" />
     <Compile Include="Negocio\Empresa.cs" />
+    <Compile Include="Negocio\Multa.cs" />
     <Compile Include="Negocio\PuntoSector.cs" />
+    <Compile Include="Negocio\SalarioBasico.cs" />
     <Compile Include="Negocio\Sector.cs" />
+    <Compile Include="Negocio\TipoMultas.cs" />
     <Compile Include="Negocio\Transaccion.cs" />
     <Compile Include="Negocio\Vendedor.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />

@@ -50,6 +50,15 @@
                 </ul>
             </li>
 
+            <li class="@Html.RouteIf("Salarios", "active")">
+                <a href="#"><i class="fa fa-lg fa-fw  fa-money "></i> <span class="menu-item-parent">Salario básico</span></a>
+                <ul>
+                    <li class="@Html.RouteIf("Salarios", "active")">
+                        <a href="@Url.Action("Index", "Salarios")" title="Gestión de salarios básicos [Insertar/Actualizar/Eliminar]"><i class="fa fa-lg fa-fw fa-money"></i> Salarios básicos</a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
     </nav>
     <span class="minifyme" data-action="minifyMenu">

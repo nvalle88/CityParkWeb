@@ -11,6 +11,11 @@
 <script src="~/Scripts/jquery-1.11.1.min.js"></script>
 <script src="~/Scripts/jquery-2.1.1.js"></script>
 <script src="~/Scripts/jquery-2.1.1.min.js"></script>
+<link rel="stylesheet" href="~/Scripts/libs/waitMe/waitMe.min.css" />
+<link rel="stylesheet" href="~/Scripts/libs/waitMe/waitMe.css" />
+<script src="~/Scripts/libs/waitMe/waitMe.min.js"></script>
+<script src="~/Scripts/Site.js"></script>
+
 
 <style>
     #map_container {
@@ -140,6 +145,17 @@
         $(document).ready(function () {
 
             $("#insertarsector").click(function () {
+                $('#container').waitMe({
+                    effect: 'bounce',
+                    text: 'Cargando',
+                    bg: rgba(255, 255, 255, 0.7),
+                    color: '#000',
+                    maxSize: '',
+                    waitTime: -1,
+                    textPos: 'vertical',
+                    fontSize: '',
+                    source: '',
+                });
                 var a = $("#nombre").val();
                 if ($("#nombre").val() != "") {
                     $.ajax({
@@ -149,6 +165,7 @@
                 data: { nombreSector: $("#nombre").val(), arreglo: arr, },
                     success: function (data) {
                         if (data == true) {
+                            $("#content").waitMe("hide");
                                location.href='@Url.Action("Index","Sectores")';
                         }
                     }, complete: function (data) {

@@ -1,0 +1,59 @@
+﻿@model CityParkWeb.Entities.Negocio.SalarioBasico
+
+@{
+    ViewData["Title"] = "Agente";
+}
+<div id="content">
+    <section id="widget-grid" class="">
+        <div class="row">
+            <article class="col-sm-12 col-md-12 col-lg-8">
+                <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Salario b&aacute;sico</h2>
+                    </header>
+                    <div>
+                        <div class="jarviswidget-editbox">
+                        </div>
+                        <div class="widget-body no-padding">
+                            <form id="checkout-form" method="post" class="smart-form" novalidate="novalidate">
+                                <fieldset>
+                                    <div class="row">
+                                        <section class="col col-4">
+                                            @Html.LabelFor(model => model.Descripcion)
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-comment"></i>
+                                                @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", id = "nombre" } })
+                                                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                        <section class="col col-4">
+                                           @Html.LabelFor(model => model.Monto)
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-usd"></i>
+                                                @Html.EditorFor(model => model.Monto, new { htmlAttributes = new { @class = "form-control", id = "nombre" } })
+                                                @Html.ValidationMessageFor(model => model.Monto, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                        <section class="col col-4">
+                                            @Html.LabelFor(model => model.Fecha)
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-calendar"></i>
+                                                @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control", id = "nombre" } })
+                                                @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                    </div>
+                                </fieldset>
+                                <footer>
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default" })
+                                </footer>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+</div>
