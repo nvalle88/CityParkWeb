@@ -16,8 +16,6 @@ namespace CityParkWeb.Controllers
     [Authorize]
     public class SalariosController : Controller
     {
-        // GET: Agentes
-
         public async Task<ActionResult> Edit(int id)
         {
 
@@ -39,7 +37,6 @@ namespace CityParkWeb.Controllers
             return View(result);
         }
 
-
         [HttpPost]
         public async Task<ActionResult> Edit(SalarioBasico salarioBasico)
         {
@@ -57,8 +54,6 @@ namespace CityParkWeb.Controllers
             }
             return RedirectToAction("Index");
         }
-
-
 
         public async Task<ActionResult> Delete(int id)
         {
