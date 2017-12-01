@@ -16,6 +16,7 @@ namespace CityParkWeb
                 "~/scripts/app.config.js",
                 "~/scripts/plugin/jquery-touch/jquery.ui.touch-punch.min.js",
                 "~/scripts/bootstrap/bootstrap.min.js",
+                "~/scripts/libs/waitMe/waitMe.min.js",
                 "~/scripts/notification/SmartNotification.min.js",
                 "~/scripts/smartwidgets/jarvis.widget.min.js",
                 "~/scripts/plugin/jquery-validate/jquery.validate.min.js",
@@ -26,6 +27,10 @@ namespace CityParkWeb
                 "~/scripts/plugin/msie-fix/jquery.mb.browser.min.js",
                 "~/scripts/plugin/fastclick/fastclick.min.js",
                 "~/scripts/app.min.js"));
+
+            bundles.Add(new ScriptBundle("~/scripts/DataTables").Include(
+               "~/scripts/jquery-2.1.1.min.js",
+               "~/scripts/DataTables/DataTableInit.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/full-calendar").Include(
                 "~/scripts/plugin/moment/moment.min.js",

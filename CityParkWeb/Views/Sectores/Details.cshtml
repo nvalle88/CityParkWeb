@@ -81,6 +81,12 @@
         $(document).ready(function () {
             
             if ($("#nombre").val() != "") {
+                $('#content').waitMe({
+                    effect: 'roundBounce',
+                    text: 'Procesando datos, por favor espere...',
+                    bg: 'rgba(255, 255, 255, 0.7)',
+                    color: '#ef4c0c'
+                });
                 $.ajax({
                     type: 'POST',
                     url: '@Url.Action("DetalleSector")',
@@ -116,6 +122,8 @@
                                 fillOpacity: 0.35
                             });
                             sectorLocalizacion.setMap(map);
+
+                            $("#content").waitMe("hide");
                         
                     },
 

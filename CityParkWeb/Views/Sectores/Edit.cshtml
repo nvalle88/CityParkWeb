@@ -95,6 +95,12 @@
         var arreglo = [];
         var map;
         $(document).ready(function () {
+            $('#content').waitMe({
+                effect: 'roundBounce',
+                text: 'Procesando datos, por favor espere...',
+                bg: 'rgba(255, 255, 255, 0.7)',
+                color: '#ef4c0c'
+            });
             $.ajax({
                 type: 'POST',
                 url: '@Url.Action("DetalleSector")',
@@ -120,6 +126,7 @@
                     sectorLocalizacion.setMap(map);
 
                 }, complete: function (data) {
+                    $("#content").waitMe("hide");
                     var path;
                 },
 
@@ -171,6 +178,12 @@
         $(document).ready(function () {
             $("#insertarsector").click(function () {
                 if ($("#nombre").val() != "") {
+                    $('#content').waitMe({
+                        effect: 'roundBounce',
+                        text: 'Insertardo cordenadas, por favor espere...',
+                        bg: 'rgba(255, 255, 255, 0.7)',
+                        color: '#ef4c0c'
+                    });
                     $.ajax({
                         type: 'POST',
                         url: '@Url.Action("EditarSector")',
@@ -181,6 +194,7 @@
                                 location.href = '@Url.Action("Index","Sectores")';
                             }
                         }, complete: function (data) {
+                            $("#content").waitMe("hide");
                         },
 
                         error: function (ex) {

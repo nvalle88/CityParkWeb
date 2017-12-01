@@ -338,6 +338,8 @@
     <Content Include="Content\css\smartadmin-production.min.css" />
     <Content Include="Content\css\smartadmin-rtl.min.css" />
     <Content Include="Content\css\smartadmin-skins.min.css" />
+    <Content Include="Content\css\waitMe.css" />
+    <Content Include="Content\css\waitMe.min.css" />
     <Content Include="Content\css\your_style.css" />
     <Content Include="Content\css\your_style.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />

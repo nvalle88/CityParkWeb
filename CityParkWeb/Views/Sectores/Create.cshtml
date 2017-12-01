@@ -99,6 +99,8 @@
         var path
 
         function initMap() {
+
+            
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 14,
                 center: { lat: -0.1702077, lng: -78.4808664 }
@@ -109,7 +111,7 @@
                 strokeWeight: 3,
                 map: map
             });
-
+            
             // Add a listener for the click event
             google.maps.event.addListener(map, 'click', function (event) {
                 addLatLngToPoly(event.latLng, poly);
@@ -145,16 +147,11 @@
         $(document).ready(function () {
 
             $("#insertarsector").click(function () {
-                $('#container').waitMe({
-                    effect: 'bounce',
-                    text: 'Cargando',
-                    bg: rgba(255, 255, 255, 0.7),
-                    color: '#000',
-                    maxSize: '',
-                    waitTime: -1,
-                    textPos: 'vertical',
-                    fontSize: '',
-                    source: '',
+                $('#content').waitMe({
+                    effect: 'roundBounce',
+                    text:'Procesando datos, por favor espere...',
+                    bg: 'rgba(255, 255, 255, 0.7)',
+                    color: '#ef4c0c'
                 });
                 var a = $("#nombre").val();
                 if ($("#nombre").val() != "") {
@@ -165,10 +162,11 @@
                 data: { nombreSector: $("#nombre").val(), arreglo: arr, },
                     success: function (data) {
                         if (data == true) {
-                            $("#content").waitMe("hide");
+                           
                                location.href='@Url.Action("Index","Sectores")';
                         }
-                    }, complete: function (data) {
+                }, complete: function (data) {
+                        $("#content").waitMe("hide");
                     },
 
                     error: function (ex) {
