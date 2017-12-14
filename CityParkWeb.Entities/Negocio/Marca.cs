@@ -12,13 +12,18 @@ namespace CityParkWeb.Entities.Negocio
     using System;
     using System.Collections.Generic;
     
-    public partial class PuntoSector
+    public partial class Marca
     {
-        public int PuntoSectorId { get; set; }
-        public Nullable<double> Latitud { get; set; }
-        public Nullable<double> Longitud { get; set; }
-        public Nullable<int> SectorId { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Marca()
+        {
+            this.Modelo = new HashSet<Modelo>();
+        }
     
-        public virtual Sector Sector { get; set; }
+        public int MarcaId { get; set; }
+        public string Nombre { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Modelo> Modelo { get; set; }
     }
 }

@@ -10,7 +10,6 @@ namespace CityParkWeb
         {
             app.MapSignalR();
             ConfigureAuth(app);
-
         }
     }
 }

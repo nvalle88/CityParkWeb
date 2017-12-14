@@ -15,7 +15,6 @@ namespace CityParkWeb.Entities.Negocio
     public partial class Multa
     {
         public int MultaId { get; set; }
-        public Nullable<int> SalarioBasicoId { get; set; }
         public Nullable<decimal> Valor { get; set; }
         public System.DateTime Fecha { get; set; }
         public Nullable<int> AgenteId { get; set; }
@@ -25,12 +24,10 @@ namespace CityParkWeb.Entities.Negocio
         public string Plaza { get; set; }
         public string Foto { get; set; }
         public Nullable<int> EmpresaId { get; set; }
-        public string Observacion { get; set; }
         public Nullable<int> TipoMultaId { get; set; }
     
         public virtual Agente Agente { get; set; }
         public virtual Empresa Empresa { get; set; }
-        public virtual SalarioBasico SalarioBasico { get; set; }
         public virtual TipoMultas TipoMultas { get; set; }
     }
 }

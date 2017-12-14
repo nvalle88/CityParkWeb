@@ -148,9 +148,6 @@ namespace CityParkWeb.Controllers
             return Json(listaRequest);
         }
 
-
-
-
         public async Task<JsonResult> EditarSector(int sectorId,string nombreSector, List<Posiciones> arreglo)
         {
 

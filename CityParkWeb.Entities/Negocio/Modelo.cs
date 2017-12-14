@@ -12,14 +12,20 @@ namespace CityParkWeb.Entities.Negocio
     using System;
     using System.Collections.Generic;
     
-    public partial class Administrador
+    public partial class Modelo
     {
-        public int AdministradorId { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public string Contrasela { get; set; }
-        public int EmpresaId { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Modelo()
+        {
+            this.Carro = new HashSet<Carro>();
+        }
     
-        public virtual Empresa Empresa { get; set; }
+        public int ModeloId { get; set; }
+        public string Nombre { get; set; }
+        public int MarcaId { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Carro> Carro { get; set; }
+        public virtual Marca Marca { get; set; }
     }
 }

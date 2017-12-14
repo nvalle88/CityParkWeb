@@ -15,19 +15,13 @@ namespace CityParkWeb.Entities.Negocio
 
     public partial class SalarioBasico
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SalarioBasico()
-        {
-            this.Multa = new HashSet<Multa>();
-        }
-    
         public int SalarioBasicoId { get; set; }
 
         [Required(ErrorMessage = "Debe intoducir el nombre")]
         [StringLength(50, ErrorMessage =
-            "La descripción no puede contener más de {1} caracteres, y menos de {2} caracteres",
-            MinimumLength = 3)]
-        [Display(Name = "Descripción")]
+           "La descripción no puede contener más de {1} caracteres, y menos de {2} caracteres",
+           MinimumLength = 3)]
+        [Display(Name = "Descripcion")]
         public string Descripcion { get; set; }
 
         [Required(ErrorMessage = "Debe intoducir el monto")]
@@ -40,10 +34,9 @@ namespace CityParkWeb.Entities.Negocio
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime Fecha { get; set; }
-
         public Nullable<int> EmpresaId { get; set; }
+    
         public virtual Empresa Empresa { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Multa> Multa { get; set; }
+        public virtual ICollection<TipoMultas> TipoMultas { get; set; }
     }
 }

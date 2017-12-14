@@ -19,7 +19,29 @@
 
         <ul>
             <li class="@Html.RouteIf("Home", "active")">
-                <a href="@Url.Action("Index", "home")" title="Inicio"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Inicio</span></a>
+                <a href="@Url.Action("Index", "Home")" title="Inicio"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Inicio</span></a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-lg fa-fw fa-gears "></i> <span class="menu-item-parent">Configurar</span></a>
+                <ul>
+                    <li class="@Html.RouteIf("Salarios", "active")">
+                        <a href="#"><i class="fa fa-lg fa-fw  fa-money "></i> <span class="menu-item-parent">Salario básico</span></a>
+                        <ul>
+                            <li class="@Html.RouteIf("Salarios", "active")">
+                                <a href="@Url.Action("Index", "Salarios")" title="Gestión de salarios básicos [Insertar/Actualizar/Eliminar]"><i class="fa fa-lg fa-fw fa-money"></i> Salarios básicos</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="@Html.RouteIf("TiposMultas", "active")">
+                        <a href="#"><i class="fa fa-lg fa-fw  fa-pencil "></i> <span class="menu-item-parent">Tipos de multas</span></a>
+                        <ul>
+                            <li class="@Html.RouteIf("TiposMultas", "active")">
+                                <a href="@Url.Action("Index", "TiposMultas")" title="Gestión de tipos de multas [Insertar/Actualizar/Eliminar]"><i class="fa fa-lg fa-fw fa-fa-flickr"></i> Tipos de multas</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </li>
             <li  @Html.RouteIf("Agentes", "active" )">
                 <a href="#"><i class="fa fa-lg fa-fw fa-cab txt-color-blue"></i> <span class="menu-item-parent">Agentes</span></a>
@@ -49,16 +71,7 @@
                     </li>
                 </ul>
             </li>
-
-            <li class="@Html.RouteIf("Salarios", "active")">
-                <a href="#"><i class="fa fa-lg fa-fw  fa-money "></i> <span class="menu-item-parent">Salario básico</span></a>
-                <ul>
-                    <li class="@Html.RouteIf("Salarios", "active")">
-                        <a href="@Url.Action("Index", "Salarios")" title="Gestión de salarios básicos [Insertar/Actualizar/Eliminar]"><i class="fa fa-lg fa-fw fa-money"></i> Salarios básicos</a>
-                    </li>
-                </ul>
-            </li>
-
+           
         </ul>
     </nav>
     <span class="minifyme" data-action="minifyMenu">

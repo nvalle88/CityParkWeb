@@ -213,6 +213,7 @@
     <Compile Include="Controllers\CommerceController.cs" />
     <Compile Include="Controllers\ElementController.cs" />
     <Compile Include="Controllers\EmailTemplatesController.cs" />
+    <Compile Include="Controllers\EmpresasController.cs" />
     <Compile Include="Controllers\FeaturesController.cs" />
     <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\ForumController.cs" />
@@ -225,6 +226,7 @@
     <Compile Include="Controllers\SalariosController.cs" />
     <Compile Include="Controllers\SectoresController.cs" />
     <Compile Include="Controllers\TablesController.cs" />
+    <Compile Include="Controllers\TiposMultasController.cs" />
     <Compile Include="Controllers\VendedoresController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1265,11 +1267,15 @@
     <Content Include="Scripts\libs\waitMe\README.md" />
     <Content Include="Views\Salarios\Create.cshtml" />
     <Content Include="Views\Salarios\Edit.cshtml" />
+    <Content Include="Views\TiposMultas\Index.cshtml" />
+    <Content Include="Views\TiposMultas\Edit.cshtml" />
+    <Content Include="Views\TiposMultas\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\img\realestate\thumbs\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Views\Empresas\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

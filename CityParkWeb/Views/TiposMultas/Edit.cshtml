@@ -1,0 +1,66 @@
+﻿@model CityParkWeb.Entities.Negocio.TipoMultas
+
+@{
+    ViewData["Title"] = "EditarSalrio";
+}
+<div id="content">
+    <section id="widget-grid" class="">
+        <div class="row">
+            <article class="col-sm-12 col-md-12 col-lg-10">
+                <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Editar tipo de multa</h2>
+                    </header>
+                    <div>
+                        <div class="jarviswidget-editbox">
+                        </div>
+                        <div class="widget-body no-padding">
+                            <form id="checkout-form" method="POST" class="smart-form" novalidate="novalidate">
+                                @Html.AntiForgeryToken()
+                                @Html.HiddenFor(model => model.TipoMultaId)
+                                <fieldset>
+                                    <div class="row">
+                                        <section class="col col-md-8">
+                                            @Html.LabelFor(model => model.Multa)
+                                            <label class="input">
+                                                <i class="icon-prepend fa  fa-pencil"></i>
+                                                @Html.EditorFor(model => model.Multa, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Multa, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                        <section class="col col-4">
+                                            @Html.LabelFor(model => model.Porcentaje)
+                                            <label class="input">
+                                                <i class="icon-prepend fa fa-percent"></i>
+                                                @Html.EditorFor(model => model.Porcentaje, new { htmlAttributes = new { @class = "form-control", id = "fecha" } })
+                                                @Html.ValidationMessageFor(model => model.Porcentaje, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                    </div>
+
+                                    <div class="row">
+                                        <fieldset>
+                                            @Html.LabelFor(model => model.Descripcion)
+                                            <label class="textarea textarea-resizable">
+                                                <i class="icon-prepend fa fa-comment"></i>
+                                                @Html.TextAreaFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control ", @rows = 5, @cols = 220 } })
+                                                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                                            </label>
+
+                                        </fieldset>
+                                    </div>
+
+                                </fieldset>
+                                <footer>
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default" })
+                                </footer>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+</div>

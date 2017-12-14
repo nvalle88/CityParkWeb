@@ -12,13 +12,14 @@ namespace CityParkWeb.Entities.Negocio
     using System;
     using System.Collections.Generic;
     
-    public partial class PuntoSector
+    public partial class Saldo
     {
-        public int PuntoSectorId { get; set; }
-        public Nullable<double> Latitud { get; set; }
-        public Nullable<double> Longitud { get; set; }
-        public Nullable<int> SectorId { get; set; }
+        public int SaldoId { get; set; }
+        public double Saldo1 { get; set; }
+        public int UsuarioId { get; set; }
+        public Nullable<int> EmpresaId { get; set; }
     
-        public virtual Sector Sector { get; set; }
+        public virtual Empresa Empresa { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

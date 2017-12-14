@@ -67,13 +67,30 @@
     <Compile Include="ModeloTranferencia\SectorViewModel.cs" />
     <Compile Include="Negocio\Administrador.cs" />
     <Compile Include="Negocio\Agente.cs" />
+    <Compile Include="Negocio\Carro.cs" />
+    <Compile Include="Negocio\Codigo.cs" />
+    <Compile Include="Negocio\Dispositivo.cs" />
     <Compile Include="Negocio\Empresa.cs" />
+    <Compile Include="Negocio\Marca.cs" />
+    <Compile Include="Negocio\Model.cs" />
+    <Compile Include="Negocio\Model.Designer.cs">
+      <DependentUpon>Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Negocio\Modelo.cs" />
     <Compile Include="Negocio\Multa.cs" />
+    <Compile Include="Negocio\Parqueo.cs" />
+    <Compile Include="Negocio\Plaza.cs" />
     <Compile Include="Negocio\PuntoSector.cs" />
     <Compile Include="Negocio\SalarioBasico.cs" />
+    <Compile Include="Negocio\Saldo.cs" />
     <Compile Include="Negocio\Sector.cs" />
+    <Compile Include="Negocio\SO.cs" />
+    <Compile Include="Negocio\TarjetaCredito.cs" />
+    <Compile Include="Negocio\TarjetaPrepago.cs" />
     <Compile Include="Negocio\TipoMultas.cs" />
     <Compile Include="Negocio\Transaccion.cs" />
+    <Compile Include="Negocio\Usuario.cs" />
+    <Compile Include="Negocio\UsuarioTarjetaPrepago.cs" />
     <Compile Include="Negocio\Vendedor.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />

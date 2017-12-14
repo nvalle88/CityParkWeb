@@ -3,9 +3,6 @@
 //     Este código se generó a partir de una plantilla.
 //
 //     Los cambios manuales en este archivo pueden causar un comportamiento inesperado de la aplicación.
-//     Los cambios manuales en este archivo se sobrescribirán si se regenera el código.
-// </auto-generated>
-//------------------------------------------------------------------------------
 
 namespace CityParkWeb.Entities.Negocio
 {
@@ -15,14 +12,7 @@ namespace CityParkWeb.Entities.Negocio
 
     public partial class TipoMultas
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TipoMultas()
-        {
-            this.Multa1 = new HashSet<Multa>();
-        }
-    
         public int TipoMultaId { get; set; }
-
         [Required(ErrorMessage = "Debe intoducir la multa")]
         [StringLength(50, ErrorMessage =
             "El nombre de la multa no puede contener más de {1} caracteres, y menos de {2} caracteres",
@@ -38,13 +28,14 @@ namespace CityParkWeb.Entities.Negocio
         [DataType(DataType.Text)]
         public string Descripcion { get; set; }
 
-        [Display(Name = "Porciento del salario básico")]
-        [Range(0.1, 100,ErrorMessage ="El porciento tiene que estar entre 0.1 % y 100 % ")]
+        [Display(Name = "Porciento")]
+        [DisplayFormat(DataFormatString = "{0:P2}", ApplyFormatInEditMode = false)]
         public Nullable<double> Porcentaje { get; set; }
 
-        public int EmpresaId { get; set; }
+        public Nullable<int> SalarioBasicoId { get; set; }
+        public Nullable<int> EmpresaId { get; set; }
         public virtual Empresa Empresa { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Multa> Multa1 { get; set; }
+        public virtual SalarioBasico SalarioBasico { get; set; }
     }
 }

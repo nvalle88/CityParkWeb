@@ -22,6 +22,18 @@
 <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
 <script src="~/signalr/hubs"></script>
 <script src="~/Scripts/chat.js"></script>
+<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+<script src="~/Scripts/jquery-3.2.1.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery-1.11.1.js"></script>
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+<script src="~/Scripts/jquery-2.1.1.js"></script>
+<script src="~/Scripts/jquery-2.1.1.min.js"></script>
+<link rel="stylesheet" href="~/Scripts/libs/waitMe/waitMe.min.css" />
+<link rel="stylesheet" href="~/Scripts/libs/waitMe/waitMe.css" />
+<script src="~/Scripts/libs/waitMe/waitMe.min.js"></script>
+<script src="~/Scripts/Site.js"></script>
 
 <style>
     #map_container {
@@ -80,15 +92,37 @@
 @section pagespecific {
     
     <script>
-         var map;
+        var map;
+        var empresa;
+        $('#content').waitMe({
+            effect: 'roundBounce',
+            text: 'Procesando datos, por favor espere...',
+            bg: 'rgba(255, 255, 255, 0.7)',
+            color: '#ef4c0c'
+        });
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetIdEmpresa", "Empresas")',
+            dataType: 'json',
+            data: { },
+            success: function (data) {
+                empresa = data
+            }, complete: function (data) {
+                $("#content").waitMe("hide");
+            },
 
+            error: function (ex) {
+                alert('Failed to retrieve data.' + ex);
+            }
+        });
          function initMap() {
              var map = new google.maps.Map(document.getElementById('map'), {
                  center: { lat: -0.170208, lng: -78.480866 },
                  zoom: 15
              });
+
              // Try HTML5 geolocation.
-             geoLocation(map);
+             geoLocation(map, empresa);
          }
 
          function geoLocation(map) {

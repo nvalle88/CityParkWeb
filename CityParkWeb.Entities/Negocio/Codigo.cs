@@ -12,13 +12,16 @@ namespace CityParkWeb.Entities.Negocio
     using System;
     using System.Collections.Generic;
     
-    public partial class PuntoSector
+    public partial class Codigo
     {
-        public int PuntoSectorId { get; set; }
-        public Nullable<double> Latitud { get; set; }
-        public Nullable<double> Longitud { get; set; }
-        public Nullable<int> SectorId { get; set; }
+        public int CodigoId { get; set; }
+        public string Codigo1 { get; set; }
+        public int UsuarioId { get; set; }
+        public int DispositivoId { get; set; }
+        public bool Usado { get; set; }
     
-        public virtual Sector Sector { get; set; }
+        public virtual Dispositivo Dispositivo { get; set; }
+        public virtual Usuario Usuario { get; set; }
+        public virtual Usuario Usuario1 { get; set; }
     }
 }
