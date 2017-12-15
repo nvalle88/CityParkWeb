@@ -124,7 +124,7 @@
              // Try HTML5 geolocation.
              geoLocation(map, empresa);
          }
-
+        
          function geoLocation(map) {
              var infoWindow = new google.maps.InfoWindow({ map: map });
              if (navigator.geolocation) {
@@ -135,7 +135,7 @@
                      };
 
                      infoWindow.setPosition(pos);
-                     infoWindow.setContent('Posición actual');
+                     infoWindow.setContent('Posici&oacute;n actual');
                      map.setCenter(pos);
                  }, function () {
                      handleLocationError(true, infoWindow, map.getCenter());
